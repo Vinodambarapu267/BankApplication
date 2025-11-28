@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome page</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<style>
+:root {
+	--main-blue: #1a237e;
+	--blue-accent: #1565c0;
+	--teal-accent: #009688;
+	--page-bg: #e3eafc;
+	--panel-bg: #fff;
+	--primary-text: #222;
+	--muted-text: #666;
+	--btn-blue: #007BFF;
+	--btn-blue-dark: #0056b3;
+}
+
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+body {
+	font-family: 'Segoe UI', Arial, sans-serif;
+	background: var(--page-bg);
+	color: var(--primary-text);
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 520px;
+	margin: 2.5rem auto;
+	background: var(--panel-bg);
+	padding: 2.5rem 2.5rem 2rem 2.5rem;
+	border-radius: 11px;
+	box-shadow: 0 4px 24px rgba(23, 78, 166, 0.11);
+}
+
+.container>div:first-child {
+	text-align: center;
+	margin-bottom: 26px;
+}
+
+.container>div:first-child span:first-child {
+	font-size: 1.65rem;
+	font-weight: 700;
+	display: block;
+	margin-bottom: 7px;
+	color: var(--main-blue);
+}
+
+.container>div:first-child span:last-child {
+	font-size: 1rem;
+	color: var(--muted-text);
+}
+
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.1rem;
+}
+
+form div:not(:last-child) {
+	margin-bottom: 4px;
+}
+
+label {
+	display: block;
+	margin-bottom: 7px;
+	font-weight: 600;
+	color: var(--blue-accent);
+}
+
+input[type="text"], input[type="password"] {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1.5px solid var(--blue-accent);
+	border-radius: 5px;
+	font-size: 1.07rem;
+	background: #f8faff;
+	transition: border-color 0.15s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+	border-color: var(--main-blue);
+	outline: none;
+}
+
+input[type="checkbox"] {
+	margin-right: 8px;
+	accent-color: var(--main-blue);
+}
+
+span {
+	font-size: 0.97rem;
+	color: var(--muted-text);
+}
+
+input[type="submit"] {
+	width: 100%;
+	background: var(--btn-blue);
+	color: white;
+	font-weight: 700;
+	border: none;
+	padding: 13px;
+	font-size: 1.15rem;
+	margin-top: 4px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background 0.21s;
+	box-shadow: 0 2px 7px rgba(0, 123, 255, 0.08);
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+	background: var(--btn-blue-dark);
+}
+
+form div:last-child {
+	text-align: center;
+	font-size: 1rem;
+}
+
+form div:last-child a {
+	color: var(--btn-blue);
+	text-decoration: none;
+	margin-left: 7px;
+	font-weight: 600;
+	transition: color 0.15s;
+}
+
+form div:last-child a:hover, form div:last-child a:focus {
+	color: var(--main-blue);
+	text-decoration: underline;
+	outline: none;
+}
+
+
+/* Tablets */
+@media ( max-width : 850px) {
+	.container {
+		max-width: 94vw;
+		padding: 2rem 1.4rem;
+	}
+	.container>div:first-child span:first-child {
+		font-size: 1.24rem;
+	}
+}
+.navabar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.2rem 2rem;
+	background: linear-gradient(90deg, var(--main-blue), var(--teal-accent));
+	color: #fff;
+}
+
+.nav-title {
+	font-size: 2.5rem;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+.nav-title span {
+	color: var(--teal-accent);
+	font-weight: 800;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+.nav-items {
+	display: flex;
+	gap: 1.2rem;
+	list-style: none;
+}
+
+.nav-items>li {
+	list-style: none;
+	margin: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: large;
+	font-weight: 800;
+}
+
+.items a {
+	position: relative;
+	text-decoration: none;
+	color: white;
+}
+
+.items a:hover {
+	color: white;
+}
+
+.items a::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background-color: transparent;
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+	transform-origin: left;
+}
+
+.items a:hover::after {
+	box-shadow: 2px 2px 2px white;
+	transform: scaleX(1);
+	color: black;
+}
+.footer {
+	width: 100%;
+	background: linear-gradient(90deg, var(--main-blue), var(--teal-accent));
+	color: white;
+	padding: 1.2rem 0 0.7rem 0;
+	margin-top: 2rem;
+	box-shadow: 0 -2px 8px rgba(23, 78, 166, 0.07);
+}
+
+.footer-content {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2rem;
+	gap: 0.7rem;
+}
+
+.footer-brand {
+	font-size: 1.2rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.footer-brand span {
+	color: var(--teal-accent);
+	font-weight: 800;
+}
+
+.footer-copy {
+	font-size: 1rem;
+	opacity: 0.9;
+}
+
+.footer-links {
+	display: flex;
+	gap: 1.2rem;
+}
+
+.footer-links a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	transition: text-decoration 0.2s, color 0.19s;
+}
+
+.footer-links a:hover, .footer-links a:focus {
+	text-decoration: underline;
+	color: var(--panel-bg);
+}
+
+@media ( max-width : 700px) {
+	.footer-content {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 0 0.8rem;
+	}
+	.footer-copy {
+		font-size: 0.98rem;
+		text-align: center;
+	}
+	.footer-links {
+		gap: 0.7rem;
+	}
+}
+
+@media ( max-width : 500px) {
+	.footer-content {
+		padding: 0 0.3rem;
+	}
+	.footer-brand {
+		font-size: 1rem;
+	}
+	.footer-copy {
+		font-size: 0.92rem;
+	}
+	.footer-links a {
+		font-size: 0.97rem;
+	}
+}
+
+/* Responsive Design */
+
+
+/* Mobiles */
+@media ( max-width : 550px) {
+	body {
+		padding: 0;
+	}
+	.container {
+		max-width: 100vw;
+		min-width: 0;
+		padding: 1rem 0.5rem;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	input[type="submit"] {
+		font-size: 1rem;
+		padding: 10px;
+	}
+	label, span {
+		font-size: 0.93rem;
+	}
+}
+</style>
+<body>
+	<nav class="navabar">
+		<h1 class="nav-title">
+			Happy <span>Wallet</span>
+		</h1>
+		<div class="nav-items">
+			<li class="items"><a href="#">Home</a></li>
+			<li class="items"><a href="#">Dashboard</a></li>
+			<li class="items"><a href="#">support</a></li>
+		</div>
+
+	</nav>
+	<div class="container">
+		<div>
+			<span>Create your HappyWallet Account</span> <span>join our
+				banking platform today</span>
+		</div>
+		<form action="register" method="post">
+			<div>
+				<label for="fullName">Full Name</label> <input type="text"
+					name="fname" id="fullName" placeholder="enter your Full Name"
+					required>
+			</div>
+			<div>
+				<label for="email">Email Address</label> <input type="text"
+					name="email" id="email" placeholder="enter your email" required>
+			</div>
+			<div>
+				<label for="phone-number">Phone Number </label> <input type="text"
+					name="phoneNo" id="phone-number"
+					placeholder="enter your phone number" required>
+			</div>
+			<div>
+				<label for="uname">User Name</label> <input type="text" name="uname"
+					id="" placeholder="Enter user Name" required>
+			</div>
+			<div>
+				<label for="password">Password</label> <input type="password"
+					name="pass" id="" placeholder="Enter the password">
+			</div>
+			<div>
+				<label for="confirm-pass">Confirm password</label> <input
+					type="password" name="confirm-pass" id="confirm-pass"
+					placeholder="Re-enter the password">
+			</div>
+			<div>
+				<input type="checkbox" name="remember" id=""> <span>I
+					Agree to the term & conditions</span>
+			</div>
+			<div>
+				<input type="submit" value="Register">
+			</div>
+			<div>
+				<span>Already have an account?</span> <a href="bankLogin.jsp">Login
+					here</a>
+			</div>
+		</form>
+	</div>
+	<footer class="footer">
+		<div class="footer-content">
+			<span class="footer-brand">Happy <span>Wallet</span></span> <span
+				class="footer-copy">&copy; 2025 Happy Wallet. All rights
+				reserved.</span>
+			<div class="footer-links">
+				<a href="#">About</a> <a href="#">Privacy Policy</a> <a href="#">Contact</a>
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>
