@@ -25,8 +25,8 @@ import com.happy_wallet.Dao.RegisterDAO;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
-	private static final String senderEmail = "ambarapuvinod@gmail.com";
-	private static final String senderPassword = "zqbp kghg kiht dfgg"; // Fixed: camelCase
+	private static final String senderEmail = "happywalletbank@gmail.com";
+	private static final String senderPassword = "sdpy xvre gmxy heaz"; // Fixed: camelCase
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
