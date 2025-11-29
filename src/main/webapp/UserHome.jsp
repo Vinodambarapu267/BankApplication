@@ -1,4 +1,7 @@
 
+<%@page import="com.happy_wallet.Bean.TransactionBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.happy_wallet.Dao.Bank_TransactionDAO"%>
 <%@page import="com.happy_wallet.Bean.BankUserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -174,6 +177,68 @@ input[type="submit"]:hover, input[type="submit"]:focus {
 	transform: scale(1.04);
 }
 
+/* TRANSACTION TABLE */
+table {
+	width: 92%;
+	max-width: 1000px;
+	margin: 32px auto;
+	border-collapse: collapse;
+	font-size: 1rem;
+	background-color: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+	border-radius: 9px;
+	overflow: hidden;
+}
+
+thead tr {
+	background-color: var(--primary);
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+th, td {
+	padding: 13px 15px;
+	text-align: center;
+	border-bottom: 1px solid #eef4ee;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #f8fdfa;
+}
+
+tbody tr:hover {
+	background-color: var(--secondary);
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.22s;
+}
+
+td.status-success {
+	background-color: #4CAF50;
+	color: white;
+	font-weight: 600;
+	border-radius: 4px;
+}
+
+td.status-pending {
+	background-color: #ff9800;
+	color: white;
+	font-weight: 600;
+	border-radius: 4px;
+}
+
+.status-success, .status-pending {
+	padding: 7px 0;
+}
+
+tr.success-row {
+	background-color: #d4edda;
+}
+
+tr.pending-row {
+	background-color: #fff3cd;
+}
 
 /* SUCCESS MESSAGE */
 .success-msg {
@@ -366,8 +431,7 @@ input[type="submit"]:hover, input[type="submit"]:focus {
 
 				String msg = (String) request.getAttribute("msg");
 				out.println("<h1> Welcome " + bean.getUsername() + "</h1>");
-				out.println("<h3>"+bean.getBalance()+"</h3>");
-				//out.println("<h3>Current Balance: ₹" +// Bank_TransactionDAO.getBalance(bean.getAccountNumber()) + "</h3>");
+				out.println("<h3>Current Balance: ₹" + Bank_TransactionDAO.getBalance(bean.getAccountNumber()) + "</h3>");
 				if(msg!=null)
 				{
 				out.println("<h2 id='msg'>" + msg + "</h2>");
@@ -389,7 +453,58 @@ input[type="submit"]:hover, input[type="submit"]:focus {
 			<br> <input type="submit" value="send">
 		</form>
 	</div>
+	<div>
+		<%
+		ArrayList<TransactionBean> al = new Bank_TransactionDAO().getTransactionList(session);
 
+		if (al.size() == 0) {
+		%>
+		<h4 style='text-align: center;'>Transaction not done</h4>
+		<%
+		} else {
+		%><h2 style='color: red; text-decoration: underline'>Your
+			Transactions</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Transaction ID</th>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Type</th>
+					<th>Amount (₹)</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				int count = 0;
+				int maxTransactions = 5; // or remove this line if you want all debit transactions
+				for (TransactionBean t : al) {
+					if (!"DEBIT".equalsIgnoreCase(t.getTxnType())) {
+						continue;
+					}
+					if (count >= maxTransactions) { // only if you want to limit the number displayed
+						break;
+					}
+				%>
+				<tr>
+					<td><%=t.getTxnId()%></td>
+					<td><%=t.getTxnDate()%></td>
+					<td><%=t.getDescription()%></td>
+					<td><%=t.getTxnType()%></td>
+					<td><%=t.getAmount()%></td>
+					<td><%=t.getStatus()%></td>
+				</tr>
+				<%
+				count++;
+				}
+				}
+				%>
+
+			</tbody>
+		</table>
+	</div>
 
 	<footer class="footer">
 		<div class="footer-content">
