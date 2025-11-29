@@ -11,7 +11,7 @@ import com.happy_wallet.connectionpool.DbConnect;
 
 public class RegisterDAO {
 
-	public int registerData(BankUserBean bb) {
+	public int registerData(BankUserBean bb) throws SQLException {
 		int rowCount = 0;
 		Connection con = DbConnect.connect();
 		long user_id = RegisterDAO.userid();
@@ -32,8 +32,7 @@ public class RegisterDAO {
 			pstmt.setDate(9, sqlDate);
 			rowCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 		return rowCount;
 	

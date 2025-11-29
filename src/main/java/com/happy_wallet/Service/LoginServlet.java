@@ -27,25 +27,26 @@ public class LoginServlet extends HttpServlet {
 		BankUserBean bean;
 		try {
 			bean = new LoginDAO().checkLogin(req.getParameter("uname"), req.getParameter("pass"));
-		
-		if (bean == null) {
-			System.out.println("bean is null");
-			req.setAttribute("msg", "Invalid credentials, please try again.");
-			RequestDispatcher rd = req.getRequestDispatcher("bankLogin.jsp");
-			rd.forward(req, res);
-		} else {
-			// Set up session
-			System.out.println("session setup proccess");
-			HttpSession session = req.getSession(true);
-			session.setAttribute("BankUserBean", bean);
-			session.setAttribute("LoginPhone", bean.getPhoneNumber());
-			req.removeAttribute("msg");
-			req.removeAttribute("success");
-			RequestDispatcher rd = req.getRequestDispatcher("UserHome.jsp");
-			rd.forward(req, res);
-		}
+
+			if (bean == null) {
+				System.out.println("bean is null");
+				req.setAttribute("msg", "Invalid credentials, please try again.");
+				RequestDispatcher rd = req.getRequestDispatcher("bankLogin.jsp");
+				rd.forward(req, res);
+			} else {
+				// Set up session
+				System.out.println("session setup proccess");
+				HttpSession session = req.getSession(true);
+				session.setAttribute("BankUserBean", bean);
+				session.setAttribute("LoginPhone", bean.getPhoneNumber());
+				req.removeAttribute("msg");
+				req.removeAttribute("success");
+				RequestDispatcher rd = req.getRequestDispatcher("UserHome.jsp");
+				rd.forward(req, res);
+			}
 		} catch (Exception e) {
-		e.printStackTrace();
+			req.setAttribute("msg", "Invalid Credentials...");
+			req.getRequestDispatcher("Error.jsp").forward(req, res);
 		}
 	}
 }

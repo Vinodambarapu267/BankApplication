@@ -116,7 +116,8 @@ public class TransferServlet extends HttpServlet {
 				req.getRequestDispatcher("UserHome.jsp").forward(req, res);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			req.setAttribute("msg", "Transaction Failed.. Check the input values..");
+			req.getRequestDispatcher("AmountError.jsp").forward(req, res);
 		}
 	}
 }

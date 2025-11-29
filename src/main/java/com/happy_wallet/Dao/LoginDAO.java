@@ -8,7 +8,7 @@ import com.happy_wallet.Bean.BankUserBean;
 import com.happy_wallet.connectionpool.DbConnect;
 
 public class LoginDAO {
-	public BankUserBean checkLogin(String uname, String pass){
+	public BankUserBean checkLogin(String uname, String pass) throws Exception{
 		BankUserBean ub = null;
 		try {
 
@@ -35,7 +35,7 @@ public class LoginDAO {
 		}
 
 		catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 		return ub;
 	}
