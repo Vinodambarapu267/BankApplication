@@ -505,7 +505,7 @@ tr.pending-row {
 			</tbody>
 		</table>
 	</div>
-	
+
 	<footer class="footer">
 		<div class="footer-content">
 			<span class="footer-brand">Happy <span>Wallet</span></span> <span
